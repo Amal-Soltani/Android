@@ -16,20 +16,27 @@ public class User {
     @ColumnInfo(name = "pwd")
     private String pwd;
 
-    @ColumnInfo(name = "fullName")
-    private String fullName;
+    @ColumnInfo(name = "firstName")
+    private String firstName;
+
+    @ColumnInfo(name = "lastName")
+    private String lastName;
 
 
     public User() {
     }
 
-    public User(String login, String pwd, String fullName) {
+    public User(String login, String pwd, String firstName, String lastName) {
         this.login = login;
         this.pwd = pwd;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-
+    public User(String login, String pwd) {
+        this.login = login;
+        this.pwd = pwd;
+    }
 
     public int getId() {
         return id;
@@ -55,12 +62,20 @@ public class User {
         this.pwd = pwd;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -69,7 +84,8 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", pwd='" + pwd + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

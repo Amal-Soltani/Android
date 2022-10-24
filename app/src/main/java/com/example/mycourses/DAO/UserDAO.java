@@ -13,8 +13,13 @@ import java.util.List;
 public interface UserDAO {
     @Insert
     void insertOne(User user);
+
     @Delete
     void delete(User user);
+
     @Query("SELECT * FROM user")
     List<User> getAll();
+
+    @Query("SELECT * FROM user WHERE login=(:login) and pwd=(:pwd)")
+    User UserByLoginAndPWD(String login, String pwd);
 }
