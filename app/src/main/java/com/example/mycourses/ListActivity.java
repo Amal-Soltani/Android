@@ -12,7 +12,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ListActivity extends AppCompatActivity {
 
     ImageView logout;
-    RecyclerView recyclerView;
     FloatingActionButton fb;
 
     @Override

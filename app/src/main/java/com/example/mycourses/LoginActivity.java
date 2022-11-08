@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = findViewById(R.id.edtSignUpEmail);
-        pwd = findViewById(R.id.edtSignUpPassword);
+        email = findViewById(R.id.edtSignInEmail);
+        pwd = findViewById(R.id.edtSignInPassword);
         signIn = (Button) findViewById(R.id.btnSignIn);
 
         signIn.setOnClickListener(e->{
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        User user = database.userDao().UserByLoginAndPWD(email.toString(), pwd.toString());
+                        User user = database.userDao().UserByLoginAndPWD(loginText, pwdText);
                         if (user == null) {
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -50,13 +50,22 @@ public class LoginActivity extends AppCompatActivity {
                             });
                         }
                         else{
+                            String s = "Student";
                             String firstName = user.getFirstName();
                             String lastName = user.getLastName();
-
-                            startActivity(new Intent(LoginActivity.this, ListActivity.class)
-                                    .putExtra("firstName",firstName)
-                                    .putExtra("lastName",lastName));
+                           if (s.equals(user.getType()))
+                            {
+                                startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class)
+                                        .putExtra("firstName",firstName)
+                                        .putExtra("lastName",lastName)
+                                        .putExtra("type",user.getType()));
+                           }else{
+                                startActivity(new Intent(LoginActivity.this, ListActivity.class)
+                                        .putExtra("firstName",firstName)
+                                        .putExtra("lastName",lastName));
+                            }
                             finish();
+
                         }
                     }
                 }).start();
@@ -70,5 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
         });
     }
+
 
 }

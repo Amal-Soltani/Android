@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,8 @@ public class SignUpActivity extends AppCompatActivity {
     TextView txtSignIn;
     EditText firstname, lastname ,email, pwd;
     Button signUp;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
 
     @Override
@@ -30,12 +35,17 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.edtSignUpEmail);
         pwd = findViewById(R.id.edtSignUpPassword);
         signUp = findViewById(R.id.btnSignUp);
+        radioGroup = findViewById(R.id.radio_group);
+        radioButton =findViewById(radioGroup.getCheckedRadioButtonId());
+
 
         signUp.setOnClickListener(e->{
             String firstNameText =firstname.getText().toString();
             String lastNameText = lastname.getText().toString();
             String loginText = email.getText().toString();
             String pwdText = pwd.getText().toString();
+            String typeText = radioButton.getText().toString();
+
 
             if (firstNameText.isEmpty() || lastNameText.isEmpty()
                     || loginText.isEmpty() || pwdText.isEmpty()){
@@ -48,20 +58,27 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         User user = database.userDao().UserByLoginAndPWD(loginText, pwdText);
-                        if (user != null) {
-                            Toast.makeText(getApplicationContext(), "User exist", Toast.LENGTH_LONG).show();
+                        if(user != null){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "User exist",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
                         else{
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    User u = new User();
+                                    u.setLogin(loginText);
+                                    u.setPwd(pwdText);
+                                    u.setFirstName(firstNameText);
+                                    u.setLastName(lastNameText);
+                                    u.setType(typeText);
 
-                                    user.setFirstName(firstNameText);
-                                    user.setLastName(lastNameText);
-                                    user.setLogin(loginText);
-                                    user.setPwd(pwdText);
-
-                                    database.userDao().insertOne(user);
+                                    database.userDao().insertOne(u);
                                     Toast.makeText(getApplicationContext(), "User Registered",
                                             Toast.LENGTH_LONG).show();
 
@@ -80,5 +97,10 @@ public class SignUpActivity extends AppCompatActivity {
                 LoginActivity.class));
             finish();
         });
+    }
+
+    public void checkButton(View view) {
+        radioButton =findViewById(radioGroup.getCheckedRadioButtonId());
+
     }
 }

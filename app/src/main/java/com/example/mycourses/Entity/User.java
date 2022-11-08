@@ -22,15 +22,29 @@ public class User {
     @ColumnInfo(name = "lastName")
     private String lastName;
 
+    @ColumnInfo(name = "type")
+    private String type;
+
 
     public User() {
     }
 
-    public User(String login, String pwd, String firstName, String lastName) {
+
+    public User(int id, String login, String pwd, String firstName, String lastName,String type) {
+        this.id = id;
         this.login = login;
         this.pwd = pwd;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.type = type;
+    }
+
+    public User(String login, String pwd, String firstName, String lastName,String type) {
+        this.login = login;
+        this.pwd = pwd;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.type = type;
     }
 
     public User(String login, String pwd) {
@@ -78,6 +92,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -86,6 +108,7 @@ public class User {
                 ", pwd='" + pwd + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
