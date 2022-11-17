@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Courses</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="add_new_course">Add Course</string>
+    <string name="add_course">Course</string>
+    <string name="add_email">Email</string>
+    <string name="add_name">Name</string>
+    <string name="add_base">ADD</string>
+    <string name="add_back">BACK</string>
+</resources>
