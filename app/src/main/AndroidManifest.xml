@@ -17,26 +17,18 @@
             android:name=".StudentHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
+            android:name=".ProfessorActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory = "true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -2,7 +2,10 @@ package com.example.mycourses.Entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.Arrays;
 
 @Entity(tableName = "user")
 public class User {
@@ -25,12 +28,34 @@ public class User {
     @ColumnInfo(name = "type")
     private String type;
 
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
+
 
     public User() {
     }
 
+    public User(String login, String pwd, String firstName, String lastName, String type, byte[] image) {
+        this.login = login;
+        this.pwd = pwd;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.type = type;
+        this.image = image;
+    }
 
-    public User(int id, String login, String pwd, String firstName, String lastName,String type) {
+    public User(int id, String login, String pwd, String firstName, String lastName, String type, byte[] image) {
+        this.id = id;
+        this.login = login;
+        this.pwd = pwd;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.type = type;
+        this.image = image;
+    }
+
+
+    public User(int id, String login, String pwd, String firstName, String lastName, String type) {
         this.id = id;
         this.login = login;
         this.pwd = pwd;
@@ -39,7 +64,7 @@ public class User {
         this.type = type;
     }
 
-    public User(String login, String pwd, String firstName, String lastName,String type) {
+    public User(String login, String pwd, String firstName, String lastName, String type) {
         this.login = login;
         this.pwd = pwd;
         this.firstName = firstName;
@@ -50,6 +75,14 @@ public class User {
     public User(String login, String pwd) {
         this.login = login;
         this.pwd = pwd;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public int getId() {
@@ -109,6 +142,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", type='" + type + '\'' +
+               // ", image=" + Arrays.toString(image) +
                 '}';
     }
 }

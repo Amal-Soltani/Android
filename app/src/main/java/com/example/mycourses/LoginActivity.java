@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .putExtra("lastName",lastName)
                                         .putExtra("type",user.getType()));
                            }else{
-                                startActivity(new Intent(LoginActivity.this, ListActivity.class)
+                                startActivity(new Intent(LoginActivity.this, ProfessorActivity.class)
                                         .putExtra("firstName",firstName)
                                         .putExtra("lastName",lastName));
                             }

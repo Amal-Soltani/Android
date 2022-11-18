@@ -7,4 +7,7 @@
     <string name="add_name">Name</string>
     <string name="add_base">ADD</string>
     <string name="add_back">BACK</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_image">add image</string>
 </resources>
